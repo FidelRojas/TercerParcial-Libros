@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
 }
 
@@ -8,13 +8,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "bo.edu.ucb.cba.tercerparciallibros"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -32,12 +32,10 @@ android {
     }
 }
 
-
 dependencies {
+
     implementation project(":domain")
-    implementation project(":usecases")
     implementation project(":data")
-    implementation project(":framework")
     implementation androidLibs.values()
     implementation kotlinLibs.values()
     implementation libs.values()
