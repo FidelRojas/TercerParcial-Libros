@@ -24,7 +24,9 @@ class BookDataSource(private val bookDao: IBookDao): ILocalDataSource {
     }
 
     override suspend fun editBook(book: Book) {
-        bookDao.editBook(book.toLocalBook())
+        var a =book.toLocalBook()
+        a.id=book.id
+        bookDao.editBook(a)
     }
 
     override suspend fun deleteBook(book: Book) {

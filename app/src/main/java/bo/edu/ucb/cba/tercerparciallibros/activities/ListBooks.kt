@@ -65,15 +65,15 @@ class ListBooks : AppCompatActivity() {
                     .setView(newBookDialogView)
                     .setTitle("Nuevo Libro")
             val newPlayerAlertDialog = newBookBuilder.show()
-            newBookDialogView.btnDialogAdd.setOnClickListener{
+            newBookDialogView.btnDialogEdit.setOnClickListener{
                 newPlayerAlertDialog.dismiss()
-                val titel = newBookDialogView.txtInputTitel.text.toString()
-                val isbn = newBookDialogView.txtInputIsbn.text.toString()
-                val author = newBookDialogView.txtInputAuth.text.toString()
-                val datePublish = newBookDialogView.txtInputDate.text.toString()
-                val numberPages = newBookDialogView.txtInputNumberPages.text.toString().toInt()
-                val description = newBookDialogView.txtInputDescription.text.toString()
-                val url = newBookDialogView.txtInputUrl.text.toString()
+                val titel = newBookDialogView.txtInputTitelEdit.text.toString()
+                val isbn = newBookDialogView.txtInputIsbnEdit.text.toString()
+                val author = newBookDialogView.txtInputAuthEdit.text.toString()
+                val datePublish = newBookDialogView.txtInputDateEdit.text.toString()
+                val numberPages = newBookDialogView.txtInputNumberPagesEdit.text.toString().toInt()
+                val description = newBookDialogView.txtInputDescriptionEdit.text.toString()
+                val url = newBookDialogView.txtInputUrlEdit.text.toString()
 
                 val newBook = Book(0,titel,isbn,author,datePublish,numberPages,description,url)
                 configurationViewModel.insertBooks(newBook)
