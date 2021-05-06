@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/txtInputTitel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Titulo"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/txtInputIsbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Isbn"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/txtInputAuth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Autor"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/txtInputDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fecha de publicacion"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/txtInputNumberPages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Numero de Paginas"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/txtInputDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripcion"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/txtInputUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Url Imagen"
+        android:inputType="textCapWords" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnDialogCancel"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Cancelar" />
+
+        <Button
+            android:id="@+id/btnDialogAdd"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Añadir" />
+    </LinearLayout>
+
+
+</LinearLayout>

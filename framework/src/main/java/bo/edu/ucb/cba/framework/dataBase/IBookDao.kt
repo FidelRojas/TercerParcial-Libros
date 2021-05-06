@@ -1,8 +1,5 @@
 package bo.edu.ucb.cba.framework.dataBase
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import bo.edu.ucb.cba.framework.dataBase.Book
 
 @Dao
@@ -16,4 +13,11 @@ interface IBookDao {
 
     @Query("DELETE FROM book_table")
     suspend fun deleteAll()
+
+
+    @Update
+    suspend fun editBook(book:Book)
+
+    @Delete
+    suspend fun deleteBook(book:Book)
 }

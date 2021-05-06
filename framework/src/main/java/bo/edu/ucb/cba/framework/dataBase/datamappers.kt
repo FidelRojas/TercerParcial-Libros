@@ -4,7 +4,7 @@ import bo.edu.ucb.cba.framework.dataBase.Book as LocalBook
 
 
 fun LocalBook.toDomainBook(): DomainBook {
-    return DomainBook(title,isbn,author, datePublish,numberPages,description,photoURL)
+    return DomainBook(id,title,isbn,author, datePublish,numberPages,description,photoURL)
 }
 fun DomainBook.toLocalBook(): LocalBook {
     return LocalBook(title,isbn,author, datePublish,numberPages,description,photoURL)

@@ -2,6 +2,8 @@ package bo.edu.ucb.cba.tercerparciallibros.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +14,9 @@ import bo.edu.ucb.cba.framework.dataBase.BookDatabase
 import bo.edu.ucb.cba.tercerparciallibros.R
 import bo.edu.ucb.cba.tercerparciallibros.adapters.BookAdapter
 import bo.edu.ucb.cba.tercerparciallibros.viewModel.ConfigurationViewModel
-import bo.edu.ucb.cba.usecases.AddBook
-import bo.edu.ucb.cba.usecases.GetBooks
+import bo.edu.ucb.cba.usecases.*
+import kotlinx.android.synthetic.main.activity_list_books.*
+import kotlinx.android.synthetic.main.add_book_dialog.view.*
 
 class ListBooks : AppCompatActivity() {
     lateinit var configurationViewModel: ConfigurationViewModel
@@ -26,8 +29,11 @@ class ListBooks : AppCompatActivity() {
         val bookDao = BookDatabase.getDatabase(applicationContext).bookDao()
         val getBooks = GetBooks(BooksRepository((BookDataSource(bookDao))))
         val addBook = AddBook(BooksRepository((BookDataSource(bookDao))))
+        val edit = EditBook(BooksRepository((BookDataSource(bookDao))))
+        val deleteBook = DeleteBook(BooksRepository((BookDataSource(bookDao))))
+        val deleteAllBooks = DeleteAllBooks(BooksRepository((BookDataSource(bookDao))))
 
-        configurationViewModel = ConfigurationViewModel(getBooks, addBook )
+        configurationViewModel = ConfigurationViewModel(getBooks, addBook, edit, deleteBook , deleteAllBooks)
         recyclerView = findViewById(R.id.recyclerViewBooks)
 
         val layoutManager = GridLayoutManager(this, 1)
@@ -36,8 +42,9 @@ class ListBooks : AppCompatActivity() {
         configurationViewModel.model.observe(this, Observer(::updateUi))
         configurationViewModel.loadBooks()
 
-        val newBook = Book("Libro1","Hola","author","12/12/12",100,"descripcion","https://www.laimprentacg.com/wp-content/uploads/2012/09/Las-partes-de-un-libro-foto-cabecera.jpg")
-        configurationViewModel.insertBooks(newBook)
+        addButton()
+
+
 
     }
 
@@ -49,5 +56,31 @@ class ListBooks : AppCompatActivity() {
 
     private fun loadBooks(movies: List<Book>) {
         recyclerView.adapter = BookAdapter(movies)
+    }
+
+    private fun addButton(){
+        floatingActionButtonAdd.setOnClickListener {
+            val newBookDialogView = LayoutInflater.from(this).inflate(R.layout.add_book_dialog,null);
+            val newBookBuilder = AlertDialog.Builder(this)
+                    .setView(newBookDialogView)
+                    .setTitle("Nuevo Libro")
+            val newPlayerAlertDialog = newBookBuilder.show()
+            newBookDialogView.btnDialogAdd.setOnClickListener{
+                newPlayerAlertDialog.dismiss()
+                val titel = newBookDialogView.txtInputTitel.text.toString()
+                val isbn = newBookDialogView.txtInputIsbn.text.toString()
+                val author = newBookDialogView.txtInputAuth.text.toString()
+                val datePublish = newBookDialogView.txtInputDate.text.toString()
+                val numberPages = newBookDialogView.txtInputNumberPages.text.toString().toInt()
+                val description = newBookDialogView.txtInputDescription.text.toString()
+                val url = newBookDialogView.txtInputUrl.text.toString()
+
+                val newBook = Book(0,titel,isbn,author,datePublish,numberPages,description,url)
+                configurationViewModel.insertBooks(newBook)
+            }
+            newBookDialogView.btnDialogCancel.setOnClickListener {
+                newPlayerAlertDialog.dismiss()
+            }
+        }
     }
 }
