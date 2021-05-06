@@ -1,2 +1,6 @@
+include ':framework'
+include ':usecases'
+include ':domain'
+include ':data'
 include ':app'
 rootProject.name = "TercerParcial(Libros)"

@@ -1,9 +1,7 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
-
 }
 
 android {
@@ -11,13 +9,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "bo.edu.ucb.cba.tercerparciallibros"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -35,17 +33,16 @@ android {
     }
 }
 
-
 dependencies {
     def picassoVersion = "2.71828"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
     implementation project(":domain")
-    implementation project(":usecases")
     implementation project(":data")
-    implementation project(":framework")
     implementation androidLibs.values()
+    implementation "androidx.room:room-ktx:2.2.1"
     implementation kotlinLibs.values()
     implementation libs.values()
+    kapt "androidx.room:room-compiler:2.2.1"
 
     testImplementation testLibs.values()
     testImplementation androidxTestLibs.values()
