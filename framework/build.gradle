@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -33,12 +34,15 @@ android {
 }
 
 dependencies {
-
+    def picassoVersion = "2.71828"
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
     implementation project(":domain")
     implementation project(":data")
     implementation androidLibs.values()
+    implementation "androidx.room:room-ktx:2.2.1"
     implementation kotlinLibs.values()
     implementation libs.values()
+    kapt "androidx.room:room-compiler:2.2.1"
 
     testImplementation testLibs.values()
     testImplementation androidxTestLibs.values()
